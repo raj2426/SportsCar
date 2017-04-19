@@ -1,5 +1,7 @@
 package com.niit.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,14 +13,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+	@Autowired
+	public HttpSession session;
 	
 @RequestMapping("/")
 public ModelAndView show()
 {
 	ModelAndView mv=new ModelAndView("/Home");
-
+	session.setAttribute("AdminMsg",null);
+	session.setAttribute("loginMsg","not logged in");
 		return mv;
 }
+
 @RequestMapping("/clickHome")
 public ModelAndView showHome()
 {
